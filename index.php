@@ -1,3 +1,4 @@
 <?php
-echo '<a href="index.html">Go to Main site</a>';
+header("Location: index.html");
+exit();
 ?>

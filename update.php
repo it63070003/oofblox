@@ -12,17 +12,15 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     $id = $_POST["id"];
     
     // Validate name
-    $input_name = trim($_POST["name"]);
+    $input_name = trim($_POST["Name"]);
     if(empty($input_name)){
         $name_err = "Please enter a name.";
-    } elseif(!filter_var($input_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $name_err = "Please enter a valid name.";
     } else{
         $name = $input_name;
     }
     
     // Validate address address
-    $input_address = trim($_POST["address"]);
+    $input_address = trim($_POST["Comment"]);
     if(empty($input_address)){
         $address_err = "Please enter an address.";     
     } else{
@@ -30,7 +28,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     }
     
     // Validate salary
-    $input_salary = trim($_POST["salary"]);
+    $input_salary = trim($_POST["Link"]);
     if(empty($input_salary)){
         $salary_err = "Please enter the salary amount.";     
     } elseif(!ctype_digit($input_salary)){
@@ -42,7 +40,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
     // Check input errors before inserting in database
     if(empty($name_err) && empty($address_err) && empty($salary_err)){
         // Prepare an update statement
-        $sql = "UPDATE employees SET name=?, address=?, salary=? WHERE id=?";
+        $sql = "UPDATE guestbook SET Name=?, Comment=?, Link=? WHERE id=?";
          
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
@@ -57,7 +55,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
             // Attempt to execute the prepared statement
             if(mysqli_stmt_execute($stmt)){
                 // Records updated successfully. Redirect to landing page
-                header("location: index.php");
+                header("location: form.php");
                 exit();
             } else{
                 echo "Something went wrong. Please try again later.";
@@ -77,7 +75,7 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
         $id =  trim($_GET["id"]);
         
         // Prepare a select statement
-        $sql = "SELECT * FROM employees WHERE id = ?";
+        $sql = "SELECT * FROM guestbook WHERE id = ?";
         if($stmt = mysqli_prepare($link, $sql)){
             // Bind variables to the prepared statement as parameters
             mysqli_stmt_bind_param($stmt, "i", $param_id);
@@ -95,9 +93,9 @@ if(isset($_POST["id"]) && !empty($_POST["id"])){
                     $row = mysqli_fetch_array($result, MYSQLI_ASSOC);
                     
                     // Retrieve individual field value
-                    $name = $row["name"];
-                    $address = $row["address"];
-                    $salary = $row["salary"];
+                    $name = $row["Name"];
+                    $address = $row["Comment"];
+                    $salary = $row["Link"];
                 } else{
                     // URL doesn't contain valid id. Redirect to error page
                     header("location: error.php");

@@ -72,17 +72,17 @@ if(isset($_GET["id"]) && !empty(trim($_GET["id"]))){
                     </div>
                     <div class="form-group">
                         <label>Name</label>
-                        <p class="form-control-static"><?php echo $row["name"]; ?></p>
+                        <p class="form-control-static"><?php echo $row["Name"]; ?></p>
                     </div>
                     <div class="form-group">
                         <label>Address</label>
-                        <p class="form-control-static"><?php echo $row["address"]; ?></p>
+                        <p class="form-control-static"><?php echo $row["Comment"]; ?></p>
                     </div>
                     <div class="form-group">
                         <label>Salary</label>
-                        <p class="form-control-static"><?php echo $row["salary"]; ?></p>
+                        <p class="form-control-static"><?php echo $row["Link"]; ?></p>
                     </div>
-                    <p><a href="index.php" class="btn btn-primary">Back</a></p>
+                    <p><a href="form.php" class="btn btn-primary">Back</a></p>
                 </div>
             </div>        
         </div>

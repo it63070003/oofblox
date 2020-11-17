@@ -12,8 +12,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $input_name = trim($_POST["name"]);
     if(empty($input_name)){
         $name_err = "Please enter a name.";
-    } elseif(!filter_var($input_name, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^[a-zA-Z\s]+$/")))){
-        $name_err = "Please enter a valid name.";
     } else{
         $name = $input_name;
     }
@@ -30,8 +28,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $input_salary = trim($_POST["Link"]);
     if(empty($input_salary)){
         $salary_err = "Please enter the salary amount.";     
-    } elseif(!ctype_digit($input_salary)){
-        $salary_err = "Please enter a positive integer value.";
     } else{
         $salary = $input_salary;
     }
